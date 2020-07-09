@@ -1,6 +1,12 @@
 from flask import Flask, render_template, url_for, request, redirect
 import os
 from werkzeug.utils import secure_filename
+try:
+    from PIL import Image
+except ImportError:
+    import Image
+import pytesseract
+
 
 UPLOAD_FOLDER = './static/uploads'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
@@ -17,11 +23,12 @@ def index():
     if request.method == 'POST':
         file = request.files['image']
         if file.filename == '':
-            flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            pytesseract.pytesseract.tesseract_cmd = r'./tesseract/tesseract'
+            print(pytesseract.image_to_osd(Image.open(os.path.join(app.config['UPLOAD_FOLDER'], filename))))
     return render_template('index.html')
 
 if __name__=="__main__":
