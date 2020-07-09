@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Image Uploader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <div class="main">
+    <h1>Flask Image Uploader</h1><br>
+    <form action="/" method="POST">
+        <input type="text" name="image" id="image">
+        <input type="submit" value="Convert Image To Text">
+    </form>
+    </div>
+</body>
+</html>
