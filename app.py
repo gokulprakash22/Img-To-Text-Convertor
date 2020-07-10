@@ -191,7 +191,7 @@ def index():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             img_path="./static/uploads/{}".format(filename)
-            pytesseract.pytesseract.tesseract_cmd = app.config['TESSERACT_FOLDER']
+            pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
             text=pytesseract.image_to_string(Image.open(img_path))
             error_msg=None
             #img_to_text(img_path)
