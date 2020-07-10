@@ -21,18 +21,22 @@ def allowed_file(filename):
 @app.route('/',methods = ['GET', 'POST'])
 def index():
     img_path=None
-    text=''
+    text=None
+    error_msg=None
     if request.method == 'POST':
         file = request.files['image']
         if file.filename == '':
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
+            error_msg="Please Upload Any Image"
+        elif file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             img_path="./static/uploads/{}".format(filename)
             pytesseract.pytesseract.tesseract_cmd = r'./tesseract/tesseract'
             text=pytesseract.image_to_string(Image.open(img_path))
-    return render_template('index.html',img_path=img_path,text=text)
+            error_msg=None
+        else:
+            error_msg="Please Upload PNG/JPG/JPEG Image"
+    return render_template('index.html',img_path=img_path,text=text,error_msg=error_msg)
 
 if __name__=="__main__":
     app.run(debug=True)

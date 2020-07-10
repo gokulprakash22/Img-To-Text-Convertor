@@ -10,3 +10,7 @@
     align-items: center;
     margin: 5%;
 }
+
+.error_msg {
+    color:red;
+}

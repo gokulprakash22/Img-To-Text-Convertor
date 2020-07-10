@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="main">
-    <h1>Flask Image Uploader</h1><br>
+    <h1>Flask Image To Text Convertor</h1><br>
     <form action="/" method="POST" enctype="multipart/form-data">
         <input type="file" name="image" id="image">
         <input type="submit" value="Convert Image To Text">
@@ -18,6 +18,9 @@
     <img src="../{{img_path}}" width="80%">
     <h3>Text</h3>
     <p>{{text}}</p>
+    {% endif %}
+    {% if error_msg %}
+    <h3 class="error_msg">{{error_msg}}</h3>
     {% endif %}
     </div>
 </body>
