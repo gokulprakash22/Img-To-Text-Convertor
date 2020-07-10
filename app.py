@@ -12,16 +12,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import csv
 
-
 UPLOAD_FOLDER = './static/uploads'
-TESSERACT_FOLDER = './tesseract/tesseract'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['TESSERACT_FOLDER'] = TESSERACT_FOLDER
 
 def allowed_file(filename):
+    ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def img_to_text(img_path):
