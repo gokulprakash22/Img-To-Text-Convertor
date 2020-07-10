@@ -5,6 +5,7 @@ try:
     from PIL import Image
 except ImportError:
     import Image
+import cv2
 import pytesseract
 import numpy as np
 import pandas as pd
