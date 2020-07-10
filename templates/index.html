@@ -17,7 +17,15 @@
     <h3>Image</h3>
     <img src="../{{img_path}}" width="80%">
     <h3>Text</h3>
-    <p>{{text}}</p>
+    <table border="1">
+        {% for row in text %}
+           <tr>
+                {% for column in row %}
+                    <td>{{ column }}</td>
+                {% endfor %}
+           </tr>
+       {% endfor %}
+    </table>
     {% endif %}
     {% if error_msg %}
     <h3 class="error_msg">{{error_msg}}</h3>
