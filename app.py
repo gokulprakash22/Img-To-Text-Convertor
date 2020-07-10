@@ -20,6 +20,8 @@ def allowed_file(filename):
 
 @app.route('/',methods = ['GET', 'POST'])
 def index():
+    img_path=None
+    text=''
     if request.method == 'POST':
         file = request.files['image']
         if file.filename == '':
@@ -27,9 +29,10 @@ def index():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            img_path="./static/uploads/{}".format(filename)
             pytesseract.pytesseract.tesseract_cmd = r'./tesseract/tesseract'
-            print(pytesseract.image_to_osd(Image.open(os.path.join(app.config['UPLOAD_FOLDER'], filename))))
-    return render_template('index.html')
+            text=pytesseract.image_to_string(Image.open(img_path))
+    return render_template('index.html',img_path=img_path,text=text)
 
 if __name__=="__main__":
     app.run(debug=True)

@@ -12,7 +12,13 @@
     <form action="/" method="POST" enctype="multipart/form-data">
         <input type="file" name="image" id="image">
         <input type="submit" value="Convert Image To Text">
-    </form>
+    </form><br>
+    {% if img_path %}
+    <h3>Image</h3>
+    <img src="../{{img_path}}" width="80%">
+    <h3>Text</h3>
+    <p>{{text}}</p>
+    {% endif %}
     </div>
 </body>
 </html>
