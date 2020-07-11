@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Image Uploader</title>
+    <title>Flask Image To Text</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel='shortcut icon' type='image/x-icon' href="{{ url_for('static', filename='favicon.ico') }}"/>
 </head>
 <body>
     <div class="main">
     <h1>Flask Image To Text Convertor</h1><br>
-    <form action="/" method="POST" enctype="multipart/form-data">
-        <input type="file" name="image" id="image">
-        <input type="submit" value="Convert Image To Text">
+    <form action="/" method="POST" enctype="multipart/form-data" class="form">
+        <div class="form-group">
+            <label for="File1">Upload Image</label>
+            <input type="file" class="form-control-file" id="File1" name="image">
+        </div>
+        <input type="submit" class="btn btn-secondary btn-block" value="Convert Image To Text">
     </form><br>
     {% if img_path %}
     <h3>Image</h3>
-    <img src="../{{img_path}}" width="80%">
+    <img src="../{{img_path}}">
     <h3>Text</h3>
-    <table border="1">
+    <table class="table table-bordered table-sm">
         {% for row in text %}
            <tr>
                 {% for column in row %}
-                    <td>{{ column }}</td>
+                    {% if column != "" %}
+                        <td>{{ column }}</td>
+                    {% endif %}
                 {% endfor %}
            </tr>
        {% endfor %}
@@ -31,5 +38,8 @@
     <h3 class="error_msg">{{error_msg}}</h3>
     {% endif %}
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 </html>

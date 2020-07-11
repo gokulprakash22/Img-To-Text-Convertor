@@ -11,6 +11,17 @@
     margin: 5%;
 }
 
+h1 {
+    text-align: center;
+}
+input {
+    margin: 1%;
+}
+
+img {
+    max-width: 80%;
+}
+
 .error_msg {
     color:red;
 }
