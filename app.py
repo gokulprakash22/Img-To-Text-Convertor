@@ -1,15 +1,6 @@
-from flask import Flask, render_template, url_for, request, redirect
-import os
+from flask import Flask, render_template, url_for, request
 from werkzeug.utils import secure_filename
-try:
-    from PIL import Image
-except ImportError:
-    import Image
-import pytesseract
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import csv
+import os
 import requests
 import json
 
