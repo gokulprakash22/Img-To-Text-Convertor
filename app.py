@@ -47,7 +47,6 @@ def index():
             for i in range(len(lines)):
                 words=lines[i].split('\t')
                 text.append(words)
-            print(text)
             error_msg=None
         else:
             error_msg="Please Upload PNG/JPG/JPEG Image"
