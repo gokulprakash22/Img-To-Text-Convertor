@@ -15,7 +15,7 @@ def allowed_file(filename):
 
 def ocr_space_file(filename):
     payload = {'isOverlayRequired': False,
-               'apikey': environ.get(OCR_SPACE_API_KEY),
+               'apikey': os.environ.get(OCR_SPACE_API_KEY),
                'language': 'eng',
                'isTable': True
                }
